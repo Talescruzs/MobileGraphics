@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 EditText c = findViewById(R.id.editCGeral);
                 if (a.getText().toString().contains(",") || b.getText().toString().contains(",") || c.getText().toString().contains(",")) {
                     throw new IllegalArgumentException("Utilize numeros decimais com . ao invez de ,");
+                }else if (a.getText().toString().trim().isEmpty() || b.getText().toString().trim().isEmpty() || c.getText().toString().trim().isEmpty()){
+                    throw new IllegalArgumentException("Precisamos de todos os campos completos");
                 }else {
                     float floatA;
                     if (a.getText().toString().contains("/")) {
@@ -89,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 EditText n = findViewById(R.id.editLinearRedu);
                 if (m.getText().toString().contains(",") || n.getText().toString().contains(",")) {
                     throw new IllegalArgumentException("Utilize numeros decimais com . ao invez de ,");
+                }else if (m.getText().toString().trim().isEmpty() || n.getText().toString().trim().isEmpty()){
+                    throw new IllegalArgumentException("Precisamos de todos os campos completos");
                 }else {
                     float floatM;
                     if (m.getText().toString().contains("/")) {
