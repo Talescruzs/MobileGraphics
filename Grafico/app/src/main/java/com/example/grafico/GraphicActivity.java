@@ -51,5 +51,9 @@ public class GraphicActivity extends AppCompatActivity {
             interseptY = n;
             Toast.makeText(this, "Intersepto X:"+interseptX+"\n"+"Intersepto Y:"+interseptY+"\n"+"Coeficiente angular:"+m+"\n"+"Coeficiente linear:"+n, Toast.LENGTH_LONG).show();
         }
+
+        // O que vai manter:
+        Intent insertEqua = new Intent(GraphicActivity.this, MainActivity.class);
+        startActivity(insertEqua);
     }
 }
