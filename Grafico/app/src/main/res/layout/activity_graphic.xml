@@ -1,16 +1,45 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ap="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:background="#6F73FF"
+    tools:context=".MainActivity"
+    >
+
 
     <com.androidplot.xy.XYPlot
-        style="@style/APDefacto.Dark"
         android:id="@+id/plot"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        ap:title="Gráfico da Reta"
-        ap:rangeTitle="Y"
-        ap:domainTitle="X"
-        ap:lineLabels="left|bottom"
-        ap:lineLabelRotationBottom="-45"/>
-</LinearLayout>
+        style="@style/APDefacto.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="412dp"
+        android:layout_marginTop="40dp"
+        app:domainTitle="X"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lineLabelRotationBottom="-60"
+        app:lineLabels="left|bottom"
+        app:rangeTitle="y"
+        app:title="Gráficos da reta" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="235dp"
+        android:layout_height="75dp"
+        android:onClick="teste"
+        android:shadowColor="@color/black"
+        android:shadowRadius="50"
+        android:text="Dados da reta"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/plot"
+        app:layout_constraintVertical_bias="0.507"
+        tools:ignore="OnClick" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

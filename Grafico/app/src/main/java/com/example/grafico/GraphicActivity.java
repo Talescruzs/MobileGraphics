@@ -1,23 +1,24 @@
 package com.example.grafico;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import android.graphics.*;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.androidplot.util.PixelUtils;
+import com.androidplot.xy.BoundaryMode;
+import com.androidplot.xy.CatmullRomInterpolator;
+import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.XYGraphWidget;
+import com.androidplot.xy.XYPlot;
 import com.androidplot.xy.XYSeries;
-import com.androidplot.xy.*;
 
 import java.text.FieldPosition;
 import java.text.Format;
 import java.text.ParsePosition;
-import java.util.*;
+import java.util.Arrays;
 
 
 public class GraphicActivity extends AppCompatActivity {
@@ -55,14 +56,14 @@ public class GraphicActivity extends AppCompatActivity {
             m = getData.getFloatExtra(MainActivity.M, 1);
             n = getData.getFloatExtra(MainActivity.N, 1);
         }
-        // create a couple arrays of y-values to plot:
-        final Number[] domainLabels = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        Number[] series1Numbers = {1, 4, 2, 8, 4, 16, 8, 32, 16};
+        interseptX = (n*-1)/m;
+        interseptY = n;
 
-        // turn the above arrays into XYSeries':
-        // (Y_VALS_ONLY means use the element index as the x value)
+        Number[] domainLabels = {interseptX*2, interseptX, 0, interseptX*-1};
+        Number[] series1Numbers = {interseptY*-1, 0, interseptY, interseptY*2};
+
         XYSeries series1 = new SimpleXYSeries(
-                Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series1");
+                Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Reta inserida");
 
         // create formatters to use for drawing a series using LineAndPointRenderer
         // and configure them from xml:
@@ -89,25 +90,17 @@ public class GraphicActivity extends AppCompatActivity {
                 return null;
             }
         });
+
     }
     public void teste(View v) {
         if(isGeral){
             Toast.makeText(this, "Inserido:"+a+"X+"+b+"Y+"+c+"=0", Toast.LENGTH_LONG).show();
-            m=(a*-1)/b;
-            n=(c*-1)/b;
-            Toast.makeText(this, "Reduzido:"+"Y="+m+"X+"+n, Toast.LENGTH_LONG).show();
-            interseptY = (c*-1)/b;
-            interseptX = (c*-1)/a;
+
             Toast.makeText(this, "Intersepto X:"+interseptX+"\n"+"Intersepto Y:"+interseptY+"\n"+"Coeficiente angular:"+m+"\n"+"Coeficiente linear:"+n, Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(this, "Inserido:"+"Y="+m+"X+"+n, Toast.LENGTH_LONG).show();
-            interseptX = (n*-1)/m;
-            interseptY = n;
+
             Toast.makeText(this, "Intersepto X:"+interseptX+"\n"+"Intersepto Y:"+interseptY+"\n"+"Coeficiente angular:"+m+"\n"+"Coeficiente linear:"+n, Toast.LENGTH_LONG).show();
         }
-
-        // O que vai manter:
-        Intent insertEqua = new Intent(GraphicActivity.this, MainActivity.class);
-        startActivity(insertEqua);
     }
 }
